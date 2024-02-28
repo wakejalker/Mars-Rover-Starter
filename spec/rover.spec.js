@@ -56,3 +56,29 @@ describe("Rover class", function() {
   })
 
 });
+
+//test 12 
+it("responds with a false completed value when attempting to move in LOW_POWER mode", function () {
+  const testRover = new Rover(98392, 'LOW_POWER');
+  const testRoverPosition = testRover.position;
+  const moveCommand = new Command('MOVE', 45678);
+  const testMessage = new Message("Test 'MOVE' command in LOW_POWER mode", [moveCommand]);
+
+  const response = testRover.receiveMessage(testMessage);
+
+  expect(response.results[0].completed).toBe(false);
+  expect(testRover.position).toBe(testRoverPosition);
+});
+
+// test 13
+it("responds with the position for the move command", function () {
+  const testRover = new Rover(98392);
+  const moveCommand = new Command('MOVE', 45678);
+  const testMessage = new Message("Test 'MOVE' command response", [moveCommand]);
+  let testRoverPosition = testRover.position;
+
+  const response = testRover.receiveMessage(testMessage);
+
+  expect(response.results[0].completed).toBe(true);
+  expect(testRover.position).toBe(45678)
+})

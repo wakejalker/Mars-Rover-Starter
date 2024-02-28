@@ -28,8 +28,14 @@ class Rover {
          }
          else {
             if (message.commands[i].commandType === 'STATUS_CHECK') {
-               response.results.push({completed: true,
-                  roverStatus: {mode: this.mode, generatorWatts: this.generatorWatts, position: this.position}});
+               response.results.push({
+                  completed: true,
+                  roverStatus: {
+                     mode: this.mode, 
+                     generatorWatts: this.generatorWatts, 
+                     position: this.position
+                  }
+               });
             }
          }
       }
